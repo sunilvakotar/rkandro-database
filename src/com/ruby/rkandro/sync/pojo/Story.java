@@ -2,10 +2,11 @@ package com.ruby.rkandro.sync.pojo;
 
 
 public class Story {
-	private Integer id;
-	private Integer storyCategoryId;
-	private String storyName;
-	private String storyDesc;
+    private Integer id;
+    private Integer storyCategoryId;
+    private String storyName;
+    private String storyDesc;
+    private Long createDate;
 
     public Integer getId() {
         return id;
@@ -37,6 +38,14 @@ public class Story {
 
     public void setStoryDesc(String storyDesc) {
         this.storyDesc = storyDesc;
+    }
+
+    public Long getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Long createDate) {
+        this.createDate = createDate;
     }
 
     @Override

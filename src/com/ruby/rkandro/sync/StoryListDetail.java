@@ -31,8 +31,6 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
     private String name;
 	
 	TextView textDescription;
-    //ImageView closeButton;
-    //RelativeLayout adsLayout;
     AirPlay airPlay;
 
     StoryDataSource dataSource;
@@ -41,43 +39,36 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
         @Override
         public void onSmartWallAdShowing() {
             //Toast.makeText(StoryListDetail.this, "onAdCached", Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onSmartWallAdClosed() {
             //Toast.makeText(StoryListDetail.this, "onSmartWallAdClosed", Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onAdError(String s) {
             //Toast.makeText(StoryListDetail.this, "onAdError:"+s, Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onSDKIntegrationError(String s) {
             //Toast.makeText(StoryListDetail.this, "onSDKIntegrationError", Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onVideoAdFinished() {
             //Toast.makeText(StoryListDetail.this, "onVideoAdFinished", Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onVideoAdShowing() {
             //Toast.makeText(StoryListDetail.this, "onVideoAdShowing", Toast.LENGTH_SHORT).show();
-            //To change body of implemented methods use File | Settings | File Templates.
         }
 
         @Override
         public void onAdCached(AdType adType) {
             //Toast.makeText(StoryListDetail.this, "onAdCached", Toast.LENGTH_SHORT).show();
-            //airPlay.showCachedAd(StoryListDetail.this, AdType.appwall);
         }
     };
 
@@ -97,8 +88,6 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
 
         textDescription = (TextView) findViewById(R.id.TextDescription);
         textDescription.setText(Html.fromHtml(story.getStoryDesc()));
-        // Look up the AdView as a resource and load a request.
-        //new RkDescription().execute(new Object());
 
         airPlay = new AirPlay(this, adCallbackListener, true);
         airPlay.startSmartWallAd();
@@ -113,7 +102,6 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
         }
         // schedule task
         mTimer.scheduleAtFixedRate(new PopupDisplayTimerTask(), NOTIFY_INTERVAL, NOTIFY_INTERVAL);
-        //airPlay.showCachedAd(StoryListDetail.this, AdCallbackListener.AdType.smartwall);
     }
 
     @Override
@@ -138,7 +126,6 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
     @Override
     public void onAdLoadingListener() {
         //Toast.makeText(StoryListDetail.this, "onAdLoadingListener", Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private boolean loadOnStart = true;
@@ -153,31 +140,26 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
     @Override
     public void onErrorListener(String s) {
         //Toast.makeText(StoryListDetail.this, "onErrorListener:"+s, Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void onCloseListener() {
         //Toast.makeText(StoryListDetail.this, "onCloseListener", Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void onAdExpandedListner() {
         //Toast.makeText(StoryListDetail.this, "onAdExpandedListner", Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void onAdClickListener() {
         //Toast.makeText(StoryListDetail.this, "onAdClickListener", Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     @Override
     public void noAdAvailableListener() {
         //Toast.makeText(StoryListDetail.this, "noAdAvailableListener", Toast.LENGTH_SHORT).show();
-        //To change body of implemented methods use File | Settings | File Templates.
     }
 
     private boolean smartAd = false;
@@ -205,50 +187,5 @@ public class StoryListDetail extends SherlockActivity implements AdCallbackListe
         }
 
     }
-
-    /*class RkDescription extends AsyncTask<Object, Void, String> {
-        protected void onPreExecute() {
-            super.onPreExecute();
-            progressDialog = ProgressDialog.show(StoryListDetail.this, "",
-                    "Loading....", true, false);
-        }
-
-        protected String doInBackground(Object... parametros) {
-
-            String result = null;
-            try {
-                String envelop = String.format(SoapWebServiceInfo.STORY_ENVELOPE, id);
-                result = SoapWebServiceUtility.callWebService(envelop, SoapWebServiceInfo.STORY_SOAP_ACTION, SoapWebServiceInfo.STORY_RESULT_TAG);
-                if(result != null){
-                    JSONObject resJsonObj = new JSONObject(result);
-                    description = convertJsonToString(resJsonObj);
-                }
-            } catch (Exception e) {
-                progressDialog.dismiss();
-            }
-
-            return result;
-        }
-
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-            if (description != null) {
-                textDescription.setText(Html.fromHtml(description));
-            }
-            progressDialog.dismiss();
-        }
-    }
-
-    private String convertJsonToString(JSONObject jsonObject)
-            throws JSONException {
-        int total = (Integer) jsonObject.get("Total");
-        JSONArray detailArray;
-        String desc = "";
-        for (int i = 0; i < total; i++) {
-            detailArray = (JSONArray) jsonObject.get("Record" + i);
-            desc =  (String) detailArray.get(0);
-        }
-        return desc;
-    }*/
 
 }
