@@ -32,6 +32,7 @@ public class Login extends SherlockActivity  implements AdCallbackListener.Mraid
     private User user = null;
 
     AirPlay airPlay;
+    private StartAppAd startAppAd = new StartAppAd(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,7 @@ public class Login extends SherlockActivity  implements AdCallbackListener.Mraid
         getSupportActionBar().setTitle(Html.fromHtml("<b><font color='#333333'>" + getString(R.string.app_name) + "</font></b>"));
 
         StartAppSearch.init(this);
+        startAppAd.loadAd();
 
         dataSource = new StoryDataSource(this);
         dataSource.open();
@@ -103,6 +105,25 @@ public class Login extends SherlockActivity  implements AdCallbackListener.Mraid
         airPlay=new AirPlay(this, adCallbackListener, true);
         AdView adView=(AdView)findViewById(R.id.myAdView);
         adView.setAdListener(this);
+    }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        startAppAd.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        startAppAd.onPause();
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+        homeIntent.addCategory(Intent.CATEGORY_HOME);
+        startActivity(homeIntent);
     }
 
 
